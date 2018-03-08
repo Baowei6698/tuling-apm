@@ -76,4 +76,6 @@ public class ServiceBean extends BaseBean implements java.io.Serializable {
     public void setMethodName(String methodName) {
         this.methodName = methodName;
     }
+
+
 }

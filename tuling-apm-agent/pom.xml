@@ -23,6 +23,15 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-coyote -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-coyote</artifactId>
+            <version>7.0.54</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

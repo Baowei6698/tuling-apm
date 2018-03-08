@@ -42,7 +42,7 @@ public class ServiceCollectTest {
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new ByteArrayClassPath(name, classBytes));
         pool.get(name).toClass();
-        new TestServiceImpl().getUser("hanmeimei");
+        new TestServiceImpl().getUser("111","dddd");
     }
 
 

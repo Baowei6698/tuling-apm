@@ -40,6 +40,8 @@ public class AgentByteBuild {
     }
 
 
+
+
     /**
      * 生成新的class 字节码 ，
      *
@@ -86,6 +88,8 @@ public class AgentByteBuild {
                 throw new RuntimeException(e);
             }
         }
+
+
 
         final static String source = "{\n"
                 + "%s"

@@ -2,7 +2,7 @@ package com.tuling.apm;
 
 import com.tuling.apm.collects.ServiceCollect;
 import com.tuling.apm.filter.JSONFormat;
-import com.tuling.apm.output.JulLoggerOutput;
+import com.tuling.apm.output.JulOutput;
 
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class ApmContext {
         this.instrumentation = instrumentation;
         collects.add(new ServiceCollect(this, instrumentation));
         filter = new JSONFormat();
-        output = new JulLoggerOutput();
+        output = new JulOutput();
     }
 
     // 递交采集结果

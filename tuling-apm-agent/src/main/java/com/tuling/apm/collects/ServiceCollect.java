@@ -2,7 +2,7 @@ package com.tuling.apm.collects;
 
 import com.tuling.apm.ApmContext;
 import com.tuling.apm.ICollect;
-import com.tuling.apm.model.ServiceBean;
+import com.tuling.apm.model.ServiceStatistics;
 import javassist.*;
 
 import java.io.IOException;
@@ -46,8 +46,8 @@ public class ServiceCollect extends AbstractByteTransformCollect implements ICol
         INSTANCE = this;
     }
 
-    public ServiceBean begin(String className, String methodName) {
-        ServiceBean bean = new ServiceBean();
+    public ServiceStatistics begin(String className, String methodName) {
+        ServiceStatistics bean = new ServiceStatistics();
         bean.setBegin(System.currentTimeMillis());
         bean.setServiceName(className);
         bean.setMethodName(methodName);
@@ -56,14 +56,14 @@ public class ServiceCollect extends AbstractByteTransformCollect implements ICol
         return bean;
     }
 
-    public void error(ServiceBean bean, Throwable e) {
+    public void error(ServiceStatistics bean, Throwable e) {
         bean.setErrorType(e.getClass().getSimpleName());
         bean.setErrorMsg(e.getMessage());
     }
 
-    public void end(ServiceBean bean) {
+    public void end(ServiceStatistics bean) {
         bean.setEnd(System.currentTimeMillis());
-        bean.setUserTime(bean.end - bean.begin);
+        bean.setUseTime(bean.end - bean.begin);
         context.submitCollectResult(bean);
     }
 

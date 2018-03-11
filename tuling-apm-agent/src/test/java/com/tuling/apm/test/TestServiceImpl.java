@@ -1,7 +1,7 @@
 package com.tuling.apm.test;
 
 import com.tuling.apm.collects.ServiceCollect;
-import com.tuling.apm.model.ServiceBean;
+import com.tuling.apm.model.ServiceStatistics;
 
 /**
  * Created by Tommy on 2018/3/8.

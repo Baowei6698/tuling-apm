@@ -36,7 +36,7 @@ public abstract class AbstractByteTransformCollect {
     }
 
     // 插桩
-    public abstract byte[] transform(ClassLoader loader, String className) throws CannotCompileException, NotFoundException, IOException;
+    public abstract byte[] transform(ClassLoader loader, String className) throws Exception;
 
     protected static CtClass toCtClass(ClassLoader loader, String className) throws NotFoundException {
         if (!classPoolMap.containsKey(loader)) {

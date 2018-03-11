@@ -27,7 +27,7 @@ public class JdbcCollectTest {
 		jdbcCollect = new JdbcCommonCollects(context, instrumentation);
 	}
 
-	
+	@Ignore
 	@Test
 	public void sqlTest() throws Exception {
 		String name = "com.mysql.jdbc.NonRegisteringDriver";

@@ -1,7 +1,9 @@
 package com.tuling.apm;
 
+import com.tuling.apm.collects.JdbcCommonCollects;
 import com.tuling.apm.collects.ServiceCollect;
 import com.tuling.apm.filter.JSONFormat;
+import com.tuling.apm.model.BaseStatistics;
 import com.tuling.apm.output.JulOutput;
 
 import java.lang.instrument.Instrumentation;
@@ -23,8 +25,13 @@ public class ApmContext {
     public ApmContext(Properties properties, Instrumentation instrumentation) {
         this.properties = properties;
         this.instrumentation = instrumentation;
+        // 注册采集器 IOC
         collects.add(new ServiceCollect(this, instrumentation));
+        collects.add(new JdbcCommonCollects(this, instrumentation));
+
+        //filter 注册
         filter = new JSONFormat();
+        //输出器注册
         output = new JulOutput();
     }
 

@@ -26,7 +26,7 @@ public class ServiceCollect extends AbstractByteTransformCollect implements ICol
         StringBuilder sbuilder = new StringBuilder();
         sbuilder.append("com.tuling.apm.collects.ServiceCollect instance= ");
         sbuilder.append("com.tuling.apm.collects.ServiceCollect.INSTANCE;\r\n");
-        sbuilder.append("com.tuling.apm.model.ServiceBean statistic =instance.begin(\"%s\",\"%s\");");
+        sbuilder.append("com.tuling.apm.model.ServiceStatistics statistic =instance.begin(\"%s\",\"%s\");");
         beginSrc = sbuilder.toString();
         sbuilder = new StringBuilder();
         sbuilder.append("instance.end(statistic);");
@@ -48,6 +48,9 @@ public class ServiceCollect extends AbstractByteTransformCollect implements ICol
 
     public ServiceStatistics begin(String className, String methodName) {
         ServiceStatistics bean = new ServiceStatistics();
+        bean.setRecordTime(System.currentTimeMillis());
+//        bean.setHostIp();
+//        bean.setHostName();
         bean.setBegin(System.currentTimeMillis());
         bean.setServiceName(className);
         bean.setMethodName(methodName);

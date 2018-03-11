@@ -33,7 +33,6 @@ public class JdbcCommonCollects extends AbstractByteTransformCollect implements 
 		super(instrumentation);
 		INSTANCE=this;
 		this.context=context;
-		
 	}
 
 
@@ -63,6 +62,8 @@ public class JdbcCommonCollects extends AbstractByteTransformCollect implements 
     
     public void end(JdbcStatistics stat) {
         JdbcStatistics jdbcStat= (JdbcStatistics) stat;
+        jdbcStat.end=System.currentTimeMillis();
+        jdbcStat.usrTime=jdbcStat.end-jdbcStat.begin;
         if (jdbcStat.jdbcUrl != null) {
             jdbcStat.databaseName = getDbName(jdbcStat.jdbcUrl);
         }
@@ -172,6 +173,7 @@ public class JdbcCommonCollects extends AbstractByteTransformCollect implements 
             for (String agentm : prepared_statement_methods) {
                 if (agentm.equals(method.getName())) {
                     isTargetMethod = true;
+                    break;
                 }
             }
             Object result = null;

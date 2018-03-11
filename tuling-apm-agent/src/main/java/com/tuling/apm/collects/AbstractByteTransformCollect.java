@@ -1,5 +1,6 @@
 package com.tuling.apm.collects;
 
+import com.tuling.apm.output.JulOutput;
 import javassist.*;
 
 import java.io.IOException;
@@ -9,12 +10,16 @@ import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Tommy on 2018/3/8.
  */
 public abstract class AbstractByteTransformCollect {
     private static Map<ClassLoader, ClassPool> classPoolMap = new ConcurrentHashMap<ClassLoader, ClassPool>();
+    static Logger logger = Logger.getLogger(JulOutput.class.getName());
+
 
     public AbstractByteTransformCollect(Instrumentation instrumentation) {
         instrumentation.addTransformer(new ClassFileTransformer() {
@@ -29,14 +34,15 @@ public abstract class AbstractByteTransformCollect {
                 try {
                     return AbstractByteTransformCollect.this.transform(loader, className);
                 } catch (Exception e) {
-                    throw new RuntimeException("转换失败:", e);
+                    logger.log(Level.SEVERE,"类插桩转换失败:",e);
                 }
+                return null;
             }
         });
     }
 
     // 插桩
-    public abstract byte[] transform(ClassLoader loader, String className) throws CannotCompileException, NotFoundException, IOException;
+    public abstract byte[] transform(ClassLoader loader, String className) throws Exception;
 
     protected static CtClass toCtClass(ClassLoader loader, String className) throws NotFoundException {
         if (!classPoolMap.containsKey(loader)) {

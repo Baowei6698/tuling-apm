@@ -3,10 +3,10 @@ package com.tuling.apm.model;
 /**
  * Created by Tommy on 2018/3/8.
  */
-public class ServiceBean extends BaseBean implements java.io.Serializable {
+public class ServiceStatistics extends BaseStatistics implements java.io.Serializable {
     public Long begin;
     public Long end;
-    public Long userTime;
+    public Long useTime;
     public String errorMsg;
     public String errorType;
     public String serviceName; //服务名称
@@ -29,15 +29,17 @@ public class ServiceBean extends BaseBean implements java.io.Serializable {
         this.end = end;
     }
 
-    public Long getUserTime() {
-        return userTime;
-    }
+   
 
-    public void setUserTime(Long userTime) {
-        this.userTime = userTime;
-    }
+    public Long getUseTime() {
+		return useTime;
+	}
 
-    public String getErrorMsg() {
+	public void setUseTime(Long useTime) {
+		this.useTime = useTime;
+	}
+
+	public String getErrorMsg() {
         return errorMsg;
     }
 

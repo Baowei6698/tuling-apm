@@ -3,7 +3,7 @@ package com.tuling.apm.model;
 /**
  * Created by Tommy on 2018/3/8.
  */
-public class BaseBean implements java.io.Serializable {
+public class BaseStatistics implements java.io.Serializable {
     private long recordTime;
     private String recordModel;
     private String hostIp;
